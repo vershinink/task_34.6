@@ -94,9 +94,6 @@ func calculator(opOne, operator, opTwo string) (float64, error) {
 	if err != nil {
 		return 0, fmt.Errorf("incorrect second operand")
 	}
-	if numTwo == 0 {
-		return 0, fmt.Errorf("division by zero")
-	}
 
 	var res float64
 	switch operator {
@@ -107,6 +104,9 @@ func calculator(opOne, operator, opTwo string) (float64, error) {
 	case "*":
 		res = numOne * numTwo
 	case "/":
+		if numTwo == 0 {
+			return 0, fmt.Errorf("division by zero")
+		}
 		res = numOne / numTwo
 	default:
 		return 0, fmt.Errorf("unknown operator")
